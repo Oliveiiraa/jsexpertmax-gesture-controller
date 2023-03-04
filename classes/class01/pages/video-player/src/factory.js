@@ -1,15 +1,14 @@
 import Controller from "./controller.js";
+import Service from "./service.js";
+import View from "./view.js";
 
 const [rootPath] = window.location.href.split("/pages/");
 
 const factory = {
   async initialize() {
     return Controller.initialize({
-      // view: new CardsView(),
-      // service: new CardsService({
-      //   dbUrl: `${rootPath}/assets/database.json`,
-      //   cardListWorker,
-      // }),
+      view: new View({}),
+      service: new Service({}),
     });
   },
 };
