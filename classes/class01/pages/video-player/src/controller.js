@@ -30,8 +30,7 @@ export default class Controller {
 
       const blinked = data.blinked;
       this.#blinkCouter += blinked;
-
-      console.log("blinked", blinked);
+      this.#view.tooglePlayVideo();
     };
 
     return {
