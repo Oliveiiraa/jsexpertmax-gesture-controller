@@ -6,10 +6,11 @@ import View from "./view.js";
 
 async function getWorker() {
   if (supportsWorkerType()) {
-    console.log("suporta");
+    console.log("initializing esm workers");
     const worker = new Worker("./src/worker.js", { type: "module" });
     return worker;
   }
+  console.warn(`Your browser doesn't support esm modules on webworkers!`);
 
   const workerMock = {
     async postMessage() {},
@@ -29,8 +30,8 @@ const factory = {
   async initialize() {
     return Controller.initialize({
       view: new View({}),
-      service: new Service({}),
       worker,
+      camera,
     });
   },
 };

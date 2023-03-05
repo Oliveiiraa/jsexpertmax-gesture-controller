@@ -15,12 +15,14 @@ const service = new Service({
 
 await service.loadModel();
 
-console.log("passou");
+console.log("TF model loaded");
 
 postMessage("READY");
 
-onmessage = ({ data }) => {
-  console.log("worker", data);
+onmessage = async ({ data: video }) => {
+  const blinked = await service.handBlinked(video);
 
-  postMessage({ response: "ok" });
+  if (!blinked) return;
+
+  postMessage({ blinked });
 };
