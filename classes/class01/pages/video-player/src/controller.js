@@ -52,11 +52,12 @@ export default class Controller {
     this.#worker.send(img);
     this.log(`detecting eye blink...`);
 
-    setTimeout(() => this.loop, 100);
+    setTimeout(() => this.loop(), 100);
   }
 
   log(text) {
-    this.#view.log(`logger: ${text}`);
+    const times = `       - blinked times: ${this.#blinkCouter}`;
+    this.#view.log(`logger: ${text}`.concat(this.#blinkCouter ? times : ""));
   }
 
   onBtnStart() {
